@@ -46,7 +46,7 @@ require_once('class/class_dbfunc.php');
    }
  else
    {//A beküldött ID-val nincs találat!
-    $answer = array ("msg"=>"A megadott azonosítóval (".$solution->id.") nem találtam feladatot!");
+    $answer = array ("msg"=>"A megadott azonosítóval (".$solution->taskId.") nem találtam feladatot!");
    }  
         
 echo json_encode($answer);
