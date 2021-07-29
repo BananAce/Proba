@@ -1,6 +1,6 @@
 <?php
 /*******************************************************************/
-/************* Próba feladat: res endpoint *************************/
+/************* Próba feladat: SOLution endpoint ********************/
 /*** Sáros Csaba                                                  **/
 /*** 2021.07.29                                                   **/
 /*******************************************************************/
@@ -26,6 +26,12 @@ require_once('class/class_dbfunc.php');
  $dbfx = new dbFuncs($base->getDb());
 
  $solution = json_decode(file_get_contents("php://input")); // Beadvány
+ if (!(isset($solution->taskId) && isset($solution->x)))
+   {//Ha valamelyik paraméter hiányzik, akkor hisztizünk és game over
+    echo json_encode(array("FAIL"=>"Nem megfelelő paraméter"));
+    exit;
+   }  
+   
  $rightSolution = $dbfx->getResult($solution->taskId); // A helyes eredményt elővesszük
  if ($rightSolution)
    {//Megvan az eredmény
